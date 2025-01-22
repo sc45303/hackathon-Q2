@@ -84,3 +84,10 @@
 // };
 
 // export default ProductCardOfNewArrivals;
+import React from "react";
+
+const productCard = () => {
+  return <div>Prodct card</div>;
+};
+
+export default productCard;
