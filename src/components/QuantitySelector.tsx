@@ -1,46 +1,65 @@
-"use client";
+"use client"; // This ensures the component runs on the client side
 
-import React, { useState } from "react";
-import AddToCartButton from "./AddToCartButton";
-import { FaMinus, FaPlus } from "react-icons/fa";
+import React from "react";
 
-const QuantitySelector: React.FC = () => {
-  const [quantity, setQuantity] = useState<number>(1);
+interface QuantitySelectorProps {
+  onSelectQuantity: (quantity: number) => void; // Callback to pass selected quantity to parent
+  initialQuantity?: number; // Optional initial quantity (default is 1)
+}
 
-  const increaseQuantity = () => setQuantity(quantity + 1);
-  const decreaseQuantity = () => {
-    if (quantity > 1) setQuantity(quantity - 1);
+const QuantitySelector: React.FC<QuantitySelectorProps> = ({
+  onSelectQuantity,
+  initialQuantity = 1,
+}) => {
+  const [quantity, setQuantity] = React.useState<number>(initialQuantity);
+
+  // Increase quantity
+  const handleIncrease = () => {
+    const newQuantity = quantity + 1;
+    setQuantity(newQuantity);
+    onSelectQuantity(newQuantity); // Pass the new quantity to the parent
+  };
+
+  // Decrease quantity (minimum is 1)
+  const handleDecrease = () => {
+    if (quantity > 1) {
+      const newQuantity = quantity - 1;
+      setQuantity(newQuantity);
+      onSelectQuantity(newQuantity); // Pass the new quantity to the parent
+    }
+  };
+
+  // Handle manual input change
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(e.target.value, 10);
+    if (!isNaN(value) && value >= 1) {
+      setQuantity(value);
+      onSelectQuantity(value); // Pass the new quantity to the parent
+    }
   };
 
   return (
-    <>
-     <h3 className="text-lg font-medium">Quantity</h3>
-    <div className="flex flex-wrap items-center gap-4 mt-6">
-      
-      {/* Quantity Selector */}
-      <div className="flex items-center bg-gray-100 rounded-full px-4 py-2">
-        <button
-          onClick={decreaseQuantity}
-          className="px-4 py-2 text-black font-bold rounded-l-full hover:bg-gray-200"
-        >
-          <FaMinus />
-        </button>
-        <span className="px-4 py-2">{quantity}</span>
-        <button
-          onClick={increaseQuantity}
-          className="px-4 py-2 text-base  rounded-r-full hover:bg-gray-200 font-bold"
-        >
-          <FaPlus />
-        </button>
-      </div>
-
-      {/* Add to Cart Button */}
-      <div className="flex-grow ">
-        <AddToCartButton />
-      </div>
+    <div className="flex items-center space-x-2">
+      <button
+        onClick={handleDecrease}
+        className="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100"
+      >
+        -
+      </button>
+      <input
+        type="number"
+        value={quantity}
+        onChange={handleInputChange}
+        className="w-16 text-center border border-gray-300 rounded-lg focus:outline-none focus:border-black"
+        min="1"
+      />
+      <button
+        onClick={handleIncrease}
+        className="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100"
+      >
+        +
+      </button>
     </div>
-
-    </>
   );
 };
 

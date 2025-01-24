@@ -1,14 +1,22 @@
 import { defineType } from "sanity"
 
 export default defineType({
-    name: 'products',
+    name: 'product',
     title: 'Products',
     type: 'document',
-    fields: [
+    fields: [ 
         {
         name: 'name',
         title: 'Name',
         type: 'string',
+        },
+        {
+        name: 'slug',
+        type: 'slug',
+        title: 'Slug',
+        options: {
+            source: 'name',
+        }
         },
         {
         name: 'price',

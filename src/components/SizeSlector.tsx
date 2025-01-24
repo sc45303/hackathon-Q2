@@ -1,31 +1,34 @@
-"use client";
-import React, { useState } from "react";
+"use client"; // This ensures the component runs on the client side
 
-type Size = "Small" | "Medium" | "Large" | "X-Large";
+import React from "react";
 
-const sizes: Size[] = ["Small", "Medium", "Large", "X-Large"];
+interface SizeSelectorProps {
+  onSelectSize: (size: string) => void; // Callback to pass selected size to parent
+  sizes?: string[]; // Optional list of sizes (default is ["S", "M", "L", "XL"])
+}
 
-const SizeSelector: React.FC = () => {
-  const [selectedSize, setSelectedSize] = useState<Size>("Large");
+const SizeSelector: React.FC<SizeSelectorProps> = ({
+  onSelectSize,
+  sizes = ["S", "M", "L", "XL"],
+}) => {
+  const handleSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedSize = e.target.value;
+    onSelectSize(selectedSize); // Pass the selected size to the parent
+  };
 
   return (
-    <div className="mb-6">
-      <h3 className="text-lg font-medium">Choose Size</h3>
-      <div className="flex items-center space-x-4 mt-2">
-        {sizes.map((size, index) => (
-          <button
-            key={index}
-            onClick={() => setSelectedSize(size)}
-            className={`px-4 py-2 rounded-full border ${
-              selectedSize === size
-                ? "bg-black text-white"
-                : "bg-gray-100 text-black"
-            }`}
-          >
+    <div>
+      <p>Select Size:</p>
+      <select
+        onChange={handleSizeChange}
+        className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
+      >
+        {sizes.map((size) => (
+          <option key={size} value={size}>
             {size}
-          </button>
+          </option>
         ))}
-      </div>
+      </select>
     </div>
   );
 };

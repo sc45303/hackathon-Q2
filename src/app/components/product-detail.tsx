@@ -6,7 +6,7 @@ export function ProductDetail() {
   const [activeTab, setActiveTab] = useState("details");
 
   return (
-    <div className="container mx-auto px-4 py-8  max-w-[1440px] mx-auto ">
+    <div className="container  px-4 py-8  max-w-[1440px] mx-auto ">
       {/* Breadcrumb
       <nav className="flex items-center gap-2 text-sm mb-8 text-gray-500">
         <span>Home</span>

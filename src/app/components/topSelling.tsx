@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import { Button } from "@/components/ui/button";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
@@ -6,16 +6,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaStar } from "react-icons/fa";
 import { useState, useEffect } from "react";
+import { Product } from "../../../types/products";
 
-interface Iproducts {
-  imageUrl: string;
-  discountPercent: number;
-  isNew: boolean;
-  name: string;
-  description: string;
-  price: number;
-  _id: string;
-}
+// interface Iproducts {
+//   imageUrl: string;
+//   discountPercent: number;
+//   isNew: boolean;
+//   name: string;
+//   description: string;
+//   price: number;
+//   _id: string;
+// }
 
 // Star icons array
 const star = [
@@ -26,8 +27,8 @@ const star = [
   <FaStar key={5} />,
 ];
 
-export default function Top_sell() {
-  const [products, setProducts] = useState<Iproducts[]>([]);
+export default function TopSelling() {
+  const [product, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -37,16 +38,19 @@ export default function Top_sell() {
       try {
         setLoading(true);
         setError(null);
-        const fetchedProducts: Iproducts[] = await client.fetch(
+        const fetchedProducts: Product[] = await client.fetch(
           `*[_type == 'product']{
-            "imageUrl": image.asset->url,
+            "image": image.asset->url,
             category,
             discountPercent,
             isNew,
             name,
             description,
             price,
-            _id
+            slug,
+            rating,
+            _id,
+            
           }[5...9]`
         );
         setProducts(fetchedProducts);
@@ -62,10 +66,9 @@ export default function Top_sell() {
     fetchProducts();
   }, []);
 
-  console.log(products);
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex justify-center items-center h-screen font-satoshi">
         <p>Loading products...</p>
       </div>
     );
@@ -80,19 +83,19 @@ export default function Top_sell() {
   }
 
   return (
-    <div className="w-full h-full mt-10 max-w-screen-xl mx-auto">
+    <div className="w-full h-full  max-w-screen-xl mx-auto mt-20">
       <h1 className="text-3xl md:text-4xl font-Bold text-center">
-        Top Selling
+        New Arrivals
       </h1>
       <div className="relative mt-10 overflow-x-auto flex space-x-5 px-8">
-        {products.map((data) => (
-          <div key={data._id} className="flex-shrink-0">
-            <Link href={`/product/${data._id}`}>
+        {product.map((product) => (
+          <div key={product._id} className="flex-shrink-0">
+            <Link href={`/product/${product.slug?.current}`}>
               <div className="w-[200px] md:w-[283px] h-[200px] md:h-[290px] bg-[#F0EEED] rounded-[20px]">
-                {data.imageUrl ? (
+                {product.image ? (
                   <Image
-                    src={urlFor(data.imageUrl).url()}
-                    alt={data.name}
+                    src={urlFor(product.image).url()}
+                    alt={product.name}
                     className="w-full h-full rounded-[20px]"
                     width={100}
                     height={100}
@@ -105,17 +108,17 @@ export default function Top_sell() {
               </div>
             </Link>
             <div className="pl-2">
-              <p className="text-lg mt-2 font-bold">{data.name}</p>
+              <p className="text-lg mt-2 font-bold">{product.name}</p>
               <div className="flex text-yellow-400">
                 {star.map((icon, index) => (
                   <span key={index}>{icon}</span>
                 ))}
               </div>
               <p className="font-bold mt-1">
-                ${data.price.toFixed(2)}
-                {data.discountPercent ? (
+                ${product.price.toFixed(2)}
+                {product.discountPercent ? (
                   <span className="text-gray-400 font-bold line-through ml-2">
-                    {data.discountPercent}%
+                    {product.discountPercent}%
                   </span>
                 ) : null}
               </p>
@@ -123,8 +126,8 @@ export default function Top_sell() {
           </div>
         ))}
       </div>
-      <div className="flex justify-center items-start mt-5">
-        <Link href="/casual">
+      <div className="flex justify-center items-start mt-10">
+        <Link href="/topSelling">
           <Button
             variant={"outline"}
             className="sm:mt-0 sm:w-[200px]  w-full md:w-52 mb-5 md:mb-12  text-center hover:bg-black/80 transition-all text-black px-16 py-6 rounded-full  hover:bg-black hover:text-white hover:transition-transform  transform hover:scale-110 duration-300 ease-in-out"
@@ -133,7 +136,7 @@ export default function Top_sell() {
           </Button>
         </Link>
       </div>
-      <hr className="border-gray-200 w-full mt-2 md:mt-0     " />
+      <hr className="border-gray-200 w-full mt-10 md:mt-0    " />
     </div>
   );
 }

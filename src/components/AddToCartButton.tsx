@@ -1,15 +1,16 @@
-"use client";
+"use client"; // Ensure this is a client component
+
 import React from "react";
 
-const AddToCartButton: React.FC = () => {
-  const handleAddToCart = () => {
-    alert("Item added to cart!");
-  };
+interface AddToCartButtonProps {
+  onClick: () => void;
+}
 
+const AddToCartButton: React.FC<AddToCartButtonProps> = ({ onClick }) => {
   return (
     <button
-      onClick={handleAddToCart}
-      className="w-full max-w-xs py-3 bg-black text-white hover:bg-gray-800 text-lg font-medium rounded-full"
+      onClick={onClick}
+      className="bg-black text-white w-[300px] py-2 rounded-lg"
     >
       Add to Cart
     </button>

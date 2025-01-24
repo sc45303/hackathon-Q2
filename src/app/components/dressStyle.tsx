@@ -10,7 +10,7 @@ type DressStyleCardProps = {
 const DressStyleCard = ({ title, className }: DressStyleCardProps) => {
   return (
     <Link
-      href={"/shirts"}
+      href={"/"}
       className={[
         "rounded-[20px] bg-white text-2xl md:text-4xl font-bold text-left p-6 md:p-9 bg-no-repeat bg-cover transform hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out",
         className,
