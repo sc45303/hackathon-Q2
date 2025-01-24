@@ -9,8 +9,10 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import SearchBar from "@/components/ui/searchbar";
 import TopBanner from "@/app/components/TopBanner";
 import Link from "next/link";
+import { useCart } from "@/app/cart/cartContext";
 
 const Navbar: React.FC = () => {
+  const { cartCount } = useCart();
   return (
     <>
       <TopBanner />
@@ -92,7 +94,10 @@ const Navbar: React.FC = () => {
             <Link href="/cart" className="btn btn-ghost btn-circle">
               <div className="indicator">
                 <LuShoppingCart className="h-6 w-6" />
-                <span className="badge badge-sm indicator-item"></span>
+                {/* Display the cart count */}
+                <span className="badge badge-sm indicator-item">
+                  {cartCount > 0 ? cartCount.toFixed(0) : ""}
+                </span>
               </div>
             </Link>
           </div>

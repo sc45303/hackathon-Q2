@@ -7,7 +7,7 @@ import ColorSelector from "@/components/ColorSelector";
 import QuantitySelector from "@/components/QuantitySelector";
 import AddToCartButton from "@/components/AddToCartButton";
 import { Product } from "../../../types/products";
-import { useCart } from "./cartContext";
+import { useCart } from "./cartContext"; // Import the useCart hook
 import SizeSelector from "@/components/SizeSlector";
 
 interface ProductPageClientWrapperProps {
@@ -34,7 +34,6 @@ const ProductPageClientWrapper: React.FC<ProductPageClientWrapperProps> = ({
       color: selectedColor,
       size: selectedSize,
     });
-    alert("Item added to cart!");
   };
 
   return (
