@@ -143,7 +143,7 @@ import ProductPageClientWrapper from "@/app/cart/ProductPageClientWrapper";
 import { Suspense } from "react";
 
 interface ProductPageProps {
-  params: { slug: string };
+  params: { slug: string }; // Correct: params is a plain object
 }
 
 async function getProduct(slug: string): Promise<Product> {
@@ -163,7 +163,7 @@ async function getProduct(slug: string): Promise<Product> {
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const { slug } = await params;
+  const { slug } = params; // Correct: No need to await params
   const product = await getProduct(slug);
 
   return (
