@@ -47,8 +47,8 @@ const ProductPageClientWrapper: React.FC<ProductPageClientWrapperProps> = ({
               src={urlFor(product.image).url()}
               className="w-[100px]  h-[100px] md:h-[150px] lg:mt-3 rounded-[20px]"
               alt={product.name}
-              width={100}
-              height={100}
+              width={195}
+              height={258}
             />
           )}
         </div>
@@ -73,7 +73,7 @@ const ProductPageClientWrapper: React.FC<ProductPageClientWrapperProps> = ({
           <p className="text-sm">{product.description}</p>
           {/* Select Color */}
           <div className="mt-2">
-            <p className="w-full text-black mt-1 ">
+            <div className="w-full text-black mt-1 ">
               <ColorSelector onSelectColor={setSelectedColor} />
               <SizeSelector
                 onSelectSize={(size) => setSelectedSize(size)} // Pass the setSelectedSize function
@@ -82,7 +82,7 @@ const ProductPageClientWrapper: React.FC<ProductPageClientWrapperProps> = ({
                 onSelectQuantity={(qty) => setQuantity(qty)} // Pass the setQuantity function
                 initialQuantity={1}
               />
-            </p>
+            </div>
           </div>
           {/* Add to Cart Button */}
           <div className="mt-4">

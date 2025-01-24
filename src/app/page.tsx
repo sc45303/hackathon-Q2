@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Hero from "./components/hero";
 import BrandLogos from "./components/BrandLogos";
 import { Reviews } from "./components/review";

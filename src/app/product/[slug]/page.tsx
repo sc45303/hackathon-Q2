@@ -140,6 +140,7 @@ import { client } from "@/sanity/lib/client";
 import { Product } from "../../../../types/products";
 import { groq } from "next-sanity";
 import ProductPageClientWrapper from "@/app/cart/ProductPageClientWrapper";
+import { Suspense } from "react";
 
 interface ProductPageProps {
   params: { slug: string };
@@ -162,12 +163,20 @@ async function getProduct(slug: string): Promise<Product> {
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const { slug } = params;
+  const { slug } = await params;
   const product = await getProduct(slug);
 
   return (
     <>
-      <ProductPageClientWrapper product={product} />
+      <Suspense
+        fallback={
+          <div className="flex items-center justify-center h-screen">
+            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-gray-900"></div>
+          </div>
+        }
+      >
+        <ProductPageClientWrapper product={product} />
+      </Suspense>
     </>
   );
 }
