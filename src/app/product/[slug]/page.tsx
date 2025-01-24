@@ -170,7 +170,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     <>
       <Suspense
         fallback={
-          <div className="flex items-center justify-center h-screen">
+          <div className="flex items-center justify-center h-screen mt-0">
             <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-gray-900"></div>
           </div>
         }

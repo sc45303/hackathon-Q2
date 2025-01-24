@@ -85,7 +85,7 @@ export default function NewArrivals() {
   return (
     <div className="w-full h-full  max-w-screen-xl mx-auto mt-20">
       <h1 className="text-3xl md:text-4xl font-Bold text-center">On Sale </h1>
-      <div className="relative mt-10 overflow-x-auto  space-x-5 px-8 grid grid-cols-1 md:grid-cols-5 lg:grid-cols-4  gap-5">
+      <div className="relative mt-10 overflow-x-auto scrollbar grid grid-cols-2 md:grid-cols-5 lg:grid-cols-4  gap-4">
         {product.map((product) => (
           <div key={product._id} className="flex-shrink-0">
             <Link href={`/product/${product.slug?.current}`}>

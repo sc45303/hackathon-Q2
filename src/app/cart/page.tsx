@@ -24,8 +24,8 @@ const CartPage = () => {
   return (
     <main className="pb-0 bg-white mt-10">
       <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-2xl md:text-4xl font-bold uppercase mb-6 font-Bold">
-          Your Cart ({cartCount} items)
+        <h2 className="text-2xl md:text-4xl uppercase mb-6 font-Bold">
+          Your Cart ({cartCount}) items
         </h2>
         <div className="flex flex-col lg:flex-row space-y-5 lg:space-y-0 lg:space-x-5">
           {/* Left Section: Cart Items */}

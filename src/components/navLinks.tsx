@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import Link from "next/link"
+import * as React from "react";
+import Link from "next/link";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 // import { Icons } from "@/components/icons"
 import {
   NavigationMenu,
@@ -13,7 +13,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
+} from "@/components/ui/navigation-menu";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -37,39 +37,32 @@ const components: { title: string; href: string; description: string }[] = [
   {
     title: "Brands",
     href: "/brands",
-    description: "A collection of popular fashion brands available for shopping.",
+    description:
+      "A collection of popular fashion brands available for shopping.",
   },
- 
-
-]
+];
 
 export function NavigationMenuDemo() {
   return (
-    <NavigationMenu >
+    <NavigationMenu>
       <NavigationMenuList>
-        
         <NavigationMenuItem>
           <NavigationMenuTrigger>Shop</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] font-satoshi ">
+            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]  ">
               {components.map((component) => (
-                <Link key={component.title} href={component.title} >
-                <ListItem
-                  
-                  title={component.title}>
-                  
-                
-                  {component.description}
-                </ListItem>
+                <Link key={component.title} href={component.title}>
+                  <ListItem title={component.title}>
+                    {component.description}
+                  </ListItem>
                 </Link>
               ))}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem >
-          <Link href="/NewArrivals" legacyBehavior passHref
-          >
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}  >
+        <NavigationMenuItem>
+          <Link href="/NewArrivals" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               New Arrrivals
             </NavigationMenuLink>
           </Link>
@@ -90,7 +83,7 @@ export function NavigationMenuDemo() {
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
-  )
+  );
 }
 
 const ListItem = React.forwardRef<
@@ -115,6 +108,6 @@ const ListItem = React.forwardRef<
         </a>
       </NavigationMenuLink>
     </li>
-  )
-})
-ListItem.displayName = "ListItem"
+  );
+});
+ListItem.displayName = "ListItem";

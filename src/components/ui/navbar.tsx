@@ -58,12 +58,12 @@ const Navbar: React.FC = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link href="#" className="hover:text-blue-600">
+                      <Link href="/onsale" className="hover:text-blue-600">
                         On Sale
                       </Link>
                     </li>
                     <li>
-                      <Link href="#" className="hover:text-blue-600">
+                      <Link href="/brands" className="hover:text-blue-600">
                         Brands
                       </Link>
                     </li>
@@ -96,7 +96,7 @@ const Navbar: React.FC = () => {
                 <LuShoppingCart className="h-6 w-6" />
                 {/* Display the cart count */}
                 <span className="badge badge-sm indicator-item">
-                  {cartCount > 0 ? cartCount.toFixed(0) : ""}
+                  {cartCount > 0 ? cartCount : ""}
                 </span>
               </div>
             </Link>
@@ -112,15 +112,15 @@ const Navbar: React.FC = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               {/* <SignedIn>
-                <li>
+              <li>
                   <UserButton />
-                </li>
-              </SignedIn>
-              <SignedOut>
-                <li>
-                  <SignInButton mode="modal" />
-                </li>
-              </SignedOut> */}
+            </li>
+           </SignedIn>
+               <SignedOut>
+             <li>
+               <SignInButton mode="modal" />
+             </li>
+             </SignedOut>  */}
             </ul>
           </div>
         </div>

@@ -37,15 +37,15 @@ const ProductPageClientWrapper: React.FC<ProductPageClientWrapperProps> = ({
   };
 
   return (
-    <div className="mt-28 md:mt-36">
-      <div className="flex h-full items-center flex-col md:flex-row justify-center sm:justify-evenly  sm:p-0 max-w-screen-2xl mx-auto">
+    <div className="mt-28 md:mt-36  ">
+      <div className="flex h-full items-center flex-col md:flex-row justify-center sm:justify-evenly  sm:p-0 max-w-screen-2xl mx-auto     ">
         {/* Left */}
         <div className="flex space-x-4 md:space-x-0  md:space-y-3 p-5 md:flex-col justify-between items-center md:w-[200px]  order-2 md:order-1">
           {product.image && (
             <Image
               key={product._id}
               src={urlFor(product.image).url()}
-              className="w-[100px]  h-[100px] md:h-[150px] lg:mt-3 rounded-[20px]"
+              className="w-auto  h-auto md:h-[150px] lg:mt-3 rounded-[20px]"
               alt={product.name}
               width={195}
               height={258}
@@ -68,6 +68,7 @@ const ProductPageClientWrapper: React.FC<ProductPageClientWrapperProps> = ({
         {/* Right */}
         <div className="w-full p-5 lg:w-[500px] lg:h-[500px]  order-3  mt-12 ">
           <h1 className="text-2xl lg:text-3xl font-Bold">{product.name}</h1>
+          <h1 className="text-2xl lg:text-3xl font-Bold">{product.price}</h1>
           <div className="flex text-yellow-400">{product.rating}</div>
           <div className="flex items-center space-x-2"></div>
           <p className="text-sm">{product.description}</p>
