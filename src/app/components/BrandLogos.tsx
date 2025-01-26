@@ -36,7 +36,7 @@ const BrandLogos = () => {
             height={150}
             width={150}
             alt={brand.id}
-            className=" max-w-[116px] lg:max-w-48 max-h-[26px] lg:max-h-9 my-5 md:my-11 animate-slide-full"
+            className=" max-w-[116px] lg:max-w-48 max-h-[26px] lg:max-h-9 my-5 md:my-11  "
           />
         ))}
       </div>

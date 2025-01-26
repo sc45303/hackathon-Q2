@@ -17,10 +17,17 @@ export default {
         Bold: ['"IntegralCF-Bold"', 'sans-serif'],
         medium: ['"IntegralCF-Medium"', 'sans-serif'],
 				satoshi: ['"Satoshi"', 'sans-serif'],
-			
-			
-
       },
+			keyframes: {
+        slide: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-100%)" },
+        },
+      },
+			animation: {
+        slide: "slide 10s linear infinite",
+      },
+		
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',

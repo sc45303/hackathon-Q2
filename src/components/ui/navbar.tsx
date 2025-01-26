@@ -16,7 +16,7 @@ const Navbar: React.FC = () => {
   return (
     <>
       <TopBanner />
-      <div className="navbar bg-base-100 shadow-md font-satoshi max-w-[1440px] mx-auto">
+      <div className="navbar bg-base-100 shadow-md font-satoshi max-w-[1440px] mx-auto sticky top-0 z-50">
         {/* Left Section: Hamburger Menu (Mobile) and Logo */}
         <div className="flex items-center space-x-2 lg:space-x-4">
           {/* Mobile Hamburger Menu */}

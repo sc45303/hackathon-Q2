@@ -18,6 +18,17 @@ description?: string;
 slug: {
   _type: "slug",
   current: string;
-}
+};
 
+inventory : number;
+
+};
+
+export type Customer = {
+   
+
+  name: string;
+  email: string;
+  phone: number;
+  address: string;
 };

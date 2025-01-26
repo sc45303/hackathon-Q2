@@ -3,8 +3,8 @@
 // import { groq } from "next-sanity";
 // import Image from "next/image";
 // import { urlFor } from "@/sanity/lib/image";
+// import { addToCart } from "@/app/actions/actions";
 // import ColorSelector from "@/components/ColorSelector";
-// import QuantitySelectorCart from "@/app/cart/QuantitySelector";
 // import SizeSelector from "@/components/SizeSlector";
 // import AddToCartButton from "@/components/AddToCartButton";
 
@@ -29,6 +29,13 @@
 // export default async function ProductPage({ params }: ProductPageProps) {
 //   const { slug } = await params;
 //   const product = await getProduct(slug);
+
+//   const handdleaddToCart = (e: React.MouseEvent, product: Product) => {
+//     e.preventDefault();
+//     addToCart(product);
+//     alert("Product Added to Cart");
+//     console.log()
+//   };
 
 //   return (
 //     <>
@@ -111,18 +118,21 @@
 //             <p className="text-sm">{product.description}</p>
 //             {/* Select Color */}
 //             <div className="mt-2">
-//               <p className="w-full text-black mt-1 ">
-//                 <ColorSelector />
-//                 <QuantitySelectorCart />
-//                 <SizeSelector />
-//               </p>
+//               <p className="w-full text-black mt-1 "></p>
 //               {/* <div className="flex space-x-3 "> */}
 //               {/* </div> */}
 //             </div>
 //             {/* Choose Size */}
 //             <div className="mt-4">
 //               <p className="text-gray-500"></p>
-//               <AddToCartButton />
+//               <div className="flex space-x-3 ">
+//                 <button
+//                   className="bg-gradient-to-r from-blue-400 to-purple-500 text-white font-satoshi w-[300px] h-10 rounded-lg shadow-md hover:from-blue-500 hover:to-purple-600 hover:shadow-lg hover:scale-110 transition-transform  duration-300 ease-in-out "
+//                   onClick={(e) => handdleaddToCart(e, product)}
+//                 >
+//                   Add to Cart
+//                 </button>
+//               </div>
 //               <div className="flex space-x-3 mt-2"></div>
 //             </div>
 //             {/* Quantity & Add to Cart */}
@@ -143,7 +153,7 @@ import ProductPageClientWrapper from "@/app/cart/ProductPageClientWrapper";
 import { Suspense } from "react";
 
 interface ProductPageProps {
-  params: { slug: string }; // Correct: params is a plain object
+  params: Promise<{ slug: string }>; // Correct: params is a plain object
 }
 
 async function getProduct(slug: string): Promise<Product> {
@@ -163,7 +173,7 @@ async function getProduct(slug: string): Promise<Product> {
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const { slug } = params; // Correct: No need to await params
+  const { slug } = await params;
   const product = await getProduct(slug);
 
   return (

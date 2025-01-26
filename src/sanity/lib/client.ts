@@ -1,8 +1,21 @@
-import { createClient } from "next-sanity";
+// import { apiVersion, dataset, projectId , token } from "../env";
+// import { createClient } from "@sanity/client";
+
+// export const client = createClient({
+//   projectId,
+//   dataset,
+//   apiVersion,
+//   token,
+//   useCdn: true,
+// });                           
+
+
+import { createClient } from "@sanity/client";
 
 export const client = createClient({
-  projectId: "7inf0jqp",
-  dataset: "production",
-  apiVersion: "2023-01-13", // Use the correct API version
-  useCdn: true,
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
+  apiVersion: '2023-10-01',
+  useCdn: false, // Write operations के लिए CDN बंद रखें
+  token: process.env.SANITY_API_TOKEN, // Token जरूर डालें
 });

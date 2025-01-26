@@ -9,6 +9,7 @@ import AddToCartButton from "@/components/AddToCartButton";
 import { Product } from "../../../types/products";
 import { useCart } from "./cartContext"; // Import the useCart hook
 import SizeSelector from "@/components/SizeSlector";
+import Swal from "sweetalert2";
 
 interface ProductPageClientWrapperProps {
   product: Product;
@@ -34,11 +35,18 @@ const ProductPageClientWrapper: React.FC<ProductPageClientWrapperProps> = ({
       color: selectedColor,
       size: selectedSize,
     });
+    Swal.fire({
+      position: "top-right",
+      icon: "success",
+      title: `${product.name} added to cart`,
+      showConfirmButton: false,
+      timer: 1500,
+    });
   };
 
   return (
-    <div className="mt-28 md:mt-36  ">
-      <div className="flex h-full items-center flex-col md:flex-row justify-center sm:justify-evenly  sm:p-0 max-w-screen-2xl mx-auto     ">
+    <div className="mt-0 md:mt-36  ">
+      <div className="flex h-full mt-0 items-center flex-col md:flex-row justify-center sm:justify-evenly  sm:p-0 max-w-screen-2xl mx-auto     ">
         {/* Left */}
         <div className="flex space-x-4 md:space-x-0  md:space-y-3 p-5 md:flex-col justify-between items-center md:w-[200px]  order-2 md:order-1">
           {product.image && (

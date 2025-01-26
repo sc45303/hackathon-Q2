@@ -4,13 +4,41 @@ import { FaArrowRight } from "react-icons/fa6";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { MdOutlineLocalOffer } from "react-icons/md";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { TbBasketExclamation } from "react-icons/tb";
 import Link from "next/link";
 import { useCart } from "./cartContext";
+// import { CheckOut } from "@/actions/CheckOut"; // Import the CheckOut action
 
 const CartPage = () => {
   const { cartItems, removeFromCart, updateQuantity, cartCount } = useCart();
+  const [showForm, setShowForm] = useState(false);
+  // const [customerInfo, setCustomerInfo] = useState({
+  //   name: "",
+  //   email: "",
+  //   phone: "",
+  //   address: "",
+  // });
+
+  // const handleInputChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setCustomerInfo({
+  //     ...customerInfo,
+  //     [name]: value,
+  //   });
+  // };
+
+  // const handlecheckout = async (e) => {
+  //   e.preventDefault(); // Prevent form submission
+  //   try {
+  //     await CheckOut(cartItems, customerInfo); // Call the CheckOut action
+  //     alert("Order placed successfully!");
+  //     setShowForm(false); // Hide the form after submission
+  //   } catch (error) {
+  //     console.error("Error placing order:", error);
+  //     alert("Failed to place order. Please try again.");
+  //   }
+  // };
 
   // Calculate subtotal, discount, and total
   const subtotal = cartItems.reduce(
@@ -24,7 +52,7 @@ const CartPage = () => {
   return (
     <main className="pb-0 bg-white mt-10">
       <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-2xl md:text-4xl uppercase mb-6 font-Bold">
+        <h2 className="text-2xl md:text-4xl uppercase mb-6 font-bold">
           Your Cart ({cartCount}) items
         </h2>
         <div className="flex flex-col lg:flex-row space-y-5 lg:space-y-0 lg:space-x-5">
@@ -36,7 +64,7 @@ const CartPage = () => {
                   key={product.id}
                   className="flex items-center justify-between py-4 border-b last:border-none"
                 >
-                  <div className="flex items-center space-x-4">
+                  <div className="flex items-center space-x-4 w-auto h-auto ">
                     <Image
                       src={product.image}
                       alt={product.name}
@@ -138,40 +166,100 @@ const CartPage = () => {
                 </button>
               </div>
               <button
+                onClick={() => setShowForm(true)}
                 type="button"
                 className="mt-6 w-full bg-black text-white py-3 rounded-lg flex items-center justify-center"
               >
-                Go to Checkout <FaArrowRight className="ml-2" />
+                Go to Checkout{" "}
+                <FaArrowRight className="ml-2 hover:animate-pulse" />
               </button>
             </div>
           </div>
         </div>
       </div>
+      {/* Checkout Form */}
+      {showForm && (
+        <form
+          // onSubmit={handlecheckout}
+          className="mt-6 space-y-4 text-center items-start justify-start max-w-6xl mx-auto px-4"
+        >
+          <div className="space-y-2">
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              // value={customerInfo.name}
+              // onChange={handleInputChange}
+              required
+              className="w-[50%]  px-4 py-2 border rounded-lg focus:outline-none"
+            />
+          </div>
+          <div className="space-y-2 ">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              // value={customerInfo.email}
+              // onChange={handleInputChange}
+              required
+              className="w-[50%] px-4 py-2 border rounded-lg focus:outline-none"
+            />
+          </div>
+          <div className="space-y-2">
+            <label
+              htmlFor="phone"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Phone
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              // value={customerInfo.phone}
+              // onChange={handleInputChange}
+              required
+              className="w-[50%] px-4 py-2 border rounded-lg focus:outline-none"
+            />
+          </div>
+          <div className="space-y-2">
+            <label
+              htmlFor="address"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Address
+            </label>
+            <textarea
+              id="address"
+              name="address"
+              // value={customerInfo.address}
+              // onChange={handleInputChange}
+              required
+              className="w-[50%] px-4 py-2 border rounded-lg focus:outline-none"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-black text-white py-3 rounded-lg"
+          >
+            Submit
+          </button>
+        </form>
+      )}
     </main>
   );
 };
 
 export default CartPage;
-
-// "use client";
-
-// import { useCart } from "./cartContext";
-
-// const CartPage = () => {
-//   const { cartItems } = useCart();
-
-//   return (
-//     <div>
-//       <h1>Your Cart</h1>
-//       {cartItems.map((item) => (
-//         <div key={item.id}>
-//           <p>{item.name}</p>
-//           <p>Quantity: {item.quantity}</p>
-//           <p>Price: ${item.price}</p>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default CartPage;
