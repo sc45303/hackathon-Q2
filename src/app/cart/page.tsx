@@ -16,7 +16,8 @@ const CartPage = () => {
   const { cartItems, removeFromCart, updateQuantity, cartCount } = useCart();
   const [showForm, setShowForm] = useState(false);
 
-  const handleCheckout = async (e) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleCheckout = async (e: any) => {
     e.preventDefault(); // Prevent default form submission
     try {
       const customerInfo = {
