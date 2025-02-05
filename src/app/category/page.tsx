@@ -96,3 +96,10 @@
 // };
 
 // export default Category;
+import React from "react";
+
+const page = () => {
+  return <div>hom</div>;
+};
+
+export default page;

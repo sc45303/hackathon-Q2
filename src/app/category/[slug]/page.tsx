@@ -1,5 +1,3 @@
-"use client";
-
 // import ColorSelector from "@/components/ColorSelector";
 // import ProductImageGallery from "@/app/components/slugComponent";
 // import ProductTitle from "@/components/ProductTitle";
