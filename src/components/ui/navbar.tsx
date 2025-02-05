@@ -38,16 +38,16 @@ const Navbar: React.FC = () => {
                         <summary>Shop</summary>
                         <ul className="p-2 space-y-1">
                           <li>
-                            <Link href="/shirts">Shirts</Link>
+                            <Link href="/category">Shirts</Link>
                           </li>
                           <li>
-                            <Link href="/pants">Pants</Link>
+                            <Link href="/category">Pants</Link>
                           </li>
                           <li>
-                            <Link href="/t-shirts">T-shirts</Link>
+                            <Link href="/category">T-shirts</Link>
                           </li>
                           <li>
-                            <Link href="/jackets">Jackets</Link>
+                            <Link href="/category">Jackets</Link>
                           </li>
                         </ul>
                       </details>

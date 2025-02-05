@@ -8,11 +8,46 @@ import React, { useState } from "react";
 import { TbBasketExclamation } from "react-icons/tb";
 import Link from "next/link";
 import { useCart } from "./cartContext";
+import { CheckOut } from "@/actions/CheckOut";
+
 // import { CheckOut } from "@/actions/CheckOut"; // Import the CheckOut action
 
 const CartPage = () => {
   const { cartItems, removeFromCart, updateQuantity, cartCount } = useCart();
   const [showForm, setShowForm] = useState(false);
+
+  const handleCheckout = async (e) => {
+    e.preventDefault(); // Prevent default form submission
+    try {
+      const customerInfo = {
+        name: e.target.name.value,
+        email: e.target.email.value,
+        phone: e.target.phone.value,
+        address: e.target.address.value,
+      };
+
+      // Call the CheckOut function with cart items and customer info
+      const result = await CheckOut(cartItems, customerInfo);
+
+      //  orderId and total from the result
+      const orderId = result._id;
+      const total = result.totalAmount;
+
+      // Redirect to the success page
+
+      window.location.href = `/success?total=${total}&orderId=${orderId}`;
+
+      // alert("Order placed successfully!");
+      console.log("Order created in Sanity:", result);
+      setShowForm(false); // Hide the form after submission
+    } catch (error) {
+      console.error("Error placing order:", error);
+      alert("Failed to place the order. Please try again.");
+    }
+  };
+
+  // replace  handleCheckout
+
   // const [customerInfo, setCustomerInfo] = useState({
   //   name: "",
   //   email: "",
@@ -180,7 +215,7 @@ const CartPage = () => {
       {/* Checkout Form */}
       {showForm && (
         <form
-          // onSubmit={handlecheckout}
+          onSubmit={handleCheckout}
           className="mt-6 space-y-4 text-center items-start justify-start max-w-6xl mx-auto px-4"
         >
           <div className="space-y-2">

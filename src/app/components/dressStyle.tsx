@@ -10,7 +10,7 @@ type DressStyleCardProps = {
 const DressStyleCard = ({ title, className }: DressStyleCardProps) => {
   return (
     <Link
-      href={"/"}
+      href={"/casual"}
       className={[
         "rounded-[20px] bg-white text-2xl md:text-4xl font-bold text-left p-6 md:p-9 bg-no-repeat bg-cover transform hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out",
         className,
@@ -30,7 +30,7 @@ const DressStyle = () => {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <DressStyleCard
-            title="Casual"
+            title="casual"
             url="/images/dress-style-1.png"
             className="h-[190px] md:h-[250px] bg-[url('/images/dress-style-1.png')]"
           />

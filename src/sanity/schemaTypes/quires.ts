@@ -6,7 +6,7 @@ import { defineType } from "sanity"
 // export const four = groq `*[_type == "product"][0...4]`;
 
 
-export default defineType  ({
+export default defineType({ 
   name: "order",
   title: "Order",
   type: "document",
@@ -39,21 +39,9 @@ export default defineType  ({
         {
           type: "object",
           fields: [
-            {
-              name: "productName",
-              title: "Product Name",
-              type: "string",
-            },
-            {
-              name: "quantity",
-              title: "Quantity",
-              type: "number",
-            },
-            {
-              name: "price",
-              title: "Price",
-              type: "number",
-            },
+            { name: "productName", title: "Product Name", type: "string" },
+            { name: "quantity", title: "Quantity", type: "number" },
+            { name: "price", title: "Price", type: "number" },
           ],
         },
       ],
@@ -65,3 +53,4 @@ export default defineType  ({
     },
   ],
 });
+

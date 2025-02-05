@@ -1,3 +1,5 @@
+"use client";
+
 interface ColorSelectorProps {
   onSelectColor: (color: string) => void;
 }

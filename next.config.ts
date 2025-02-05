@@ -2,7 +2,7 @@
 const nextConfig = {
   experimental: {
     appDir: true,
-    turbo: false, // Disable Turbopack
+    turbo: {}, // Disable Turbopack
   },
   images: {
     remotePatterns: [
