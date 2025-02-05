@@ -19,6 +19,7 @@ interface OrderData {
   shippingLabelUrl?: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const CheckOut = async (cartItems: any[], customerInfo: any) => {
   const orderData: OrderData = {
     customerName: customerInfo.name,
