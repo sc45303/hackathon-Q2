@@ -44,3 +44,10 @@
 // };
 
 // export default QuantitySelectorCart;
+import React from "react";
+
+const pa = () => {
+  return <div>sdjskakasl</div>;
+};
+
+export default pa;

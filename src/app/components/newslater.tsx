@@ -1,3 +1,5 @@
+"use client";
+
 import { MdOutlineEmail } from "react-icons/md";
 
 export function Newsletter() {

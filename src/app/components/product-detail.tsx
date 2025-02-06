@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { Star, ChevronDown, Minus, Plus } from "lucide-react";
 import { useState } from "react";
