@@ -17,6 +17,7 @@ const SuccessPageContent = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
+  // Fetch order details
   useEffect(() => {
     const fetchOrderDetails = async () => {
       if (!orderId) return;
@@ -39,8 +40,36 @@ const SuccessPageContent = () => {
     fetchOrderDetails();
   }, [orderId]);
 
+  // Handle payout with Stripe
+  const handlePayout = async () => {
+    try {
+      const response = await fetch("/api/payment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: "Order Payment",
+          price: parseFloat(total) * 100, // Convert to subunits
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.url) {
+        window.location.href = data.url;
+      } else {
+        alert(`Error creating Stripe payment session: ${data.error}`);
+      }
+    } catch (error) {
+      console.error("Payment initiation error:", error);
+      alert("Something went wrong. Please try again.");
+    }
+  };
+
   return (
-    <div className="text-center bg-white p-10 shadow-xl rounded-lg w-96">
+    <div className="text-center bg-white p-8 shadow-lg rounded-lg w-96">
+      {/* Dynamic Heading Based on Payment Status */}
       {orderDetails?.paymentStatus === "paid" ? (
         <h1 className="text-4xl font-bold text-blue-600">
           Payment Successful!
@@ -51,6 +80,7 @@ const SuccessPageContent = () => {
         </h1>
       )}
 
+      {/* Dynamic Message */}
       <p className="text-gray-700 mt-4">
         {orderDetails?.paymentStatus === "paid"
           ? `Your payment of $${parseFloat(total).toFixed(2)} has been successfully processed.`
@@ -66,8 +96,9 @@ const SuccessPageContent = () => {
       {loading && (
         <p className="text-gray-500 mt-4">Loading order details...</p>
       )}
-      {error && <p className="text-red-600 mt-4">{error}</p>}
+      {error && <p className="text-white mt-4">{error}</p>}
 
+      {/* Display Products */}
       {orderDetails?.products && (
         <div className="mt-4 text-left">
           <h3 className="text-lg font-bold">Products Ordered:</h3>
@@ -81,7 +112,16 @@ const SuccessPageContent = () => {
         </div>
       )}
 
+      {/* Buttons for further actions */}
       <div className="mt-8 flex flex-col gap-4">
+        {!loading && orderDetails?.paymentStatus !== "paid" && (
+          <button
+            onClick={handlePayout}
+            className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700"
+          >
+            Proceed to Payment
+          </button>
+        )}
         <Link href="/">
           <p className="text-white bg-gray-800 px-6 py-3 rounded-lg hover:bg-gray-900">
             Continue Shopping
