@@ -197,7 +197,7 @@ export const CheckOut = async (
         },
         shipFrom: {
           name: "Shop.co",
-          phone: "+1 555 123 4567",
+          phone: "+92 555 123 4567",
           addressLine1: "742 Evergreen Terrace",
           cityLocality: "Springfield",
           stateProvince: "IL",

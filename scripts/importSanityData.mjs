@@ -8,7 +8,7 @@ const client = createClient({
   useCdn: false, // Disable CDN for fresh data
   apiVersion: "2023-01-01", // Use a valid API version
 });
-
+    
 async function uploadImageToSanity(imageUrl) {
   try {
     console.log(`Uploading image: ${imageUrl}`);
