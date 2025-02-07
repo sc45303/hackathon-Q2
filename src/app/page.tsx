@@ -14,7 +14,6 @@ const Home = () => {
     <div>
       <Hero />
       <BrandLogos />
-
       <NewArrivals />
       <TopSelling />
       <DressStyle />

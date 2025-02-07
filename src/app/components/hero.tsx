@@ -20,7 +20,8 @@ const Hero = () => {
           <div>
             <Link
               href="/"
-              className="w-full md:w-52 mb-5 md:mb-12 inline-block text-center bg-black hover:bg-black/80 transition-all text-white px-14 py-4 rounded-full  hover:bg-black hover:text-white hover:transition-transform  transform hover:scale-110 duration-300 ease-in-out"
+              className="w-full md:w-52 mb-5 md:mb-12 inline-block text-center bg-black text-white px-14 py-4 rounded-full transition-all transform hover:bg-black/80 hover:scale-110 duration-300 ease-in-out
+              font-bold text-sm md:text-base"
             >
               Shop Now
             </Link>
@@ -74,3 +75,5 @@ const Hero = () => {
 };
 
 export default Hero;
+
+// code with animtion
