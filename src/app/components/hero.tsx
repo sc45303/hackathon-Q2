@@ -6,7 +6,7 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <header className="bg-[#F2F0F1] pt-10 md:pt-24 overflow-hidden max-w-[1440px] mx-auto ">
+    <header className="bg-[#F2F0F1] pt-10 md:pt-24 overflow-hidden max-w-[1440px] mx-auto min-w-[410px] ">
       <div className="md:max-w-frame mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
         <section className="max-w-frame px-4">
           <h2 className="font-Bold  md:text-4xl lg: text-4xl lg:text-[64px] lg:leading-[64px] mb-5 lg:mb-8 md:font-extrabold ">

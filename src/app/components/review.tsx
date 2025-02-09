@@ -59,9 +59,11 @@ export function Reviews() {
   };
 
   return (
-    <section className="py-16 bg-gray-50 font-satoshi max-w-[1440px] mx-auto">
+    <section className="py-16 bg-gray-50 font-satoshi max-w-[1440px] mx-auto min-w-[410px]">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-Bold text-start mb-12">Our Happy Customers</h2>
+        <h2 className="text-4xl font-Bold text-start mb-12">
+          Our Happy Customers
+        </h2>
 
         <div className="relative">
           {/* Navigation Buttons */}
@@ -97,14 +99,19 @@ export function Reviews() {
                   <div className="bg-white p-8 rounded-3xl shadow-md h-full hover:scale-105 transition-transform duration-300">
                     <div className="flex gap-1 mb-4">
                       {[...Array(review.rating)].map((_, i) => (
-                        <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                        <Star
+                          key={i}
+                          className="w-5 h-5 fill-yellow-400 text-yellow-400"
+                        />
                       ))}
                     </div>
                     <div className="flex items-center gap-2 mb-4">
                       <span className="font-semibold">{review.name}</span>
                       <MdCheckCircle className="w-6 h-6 text-green-500" />
                     </div>
-                    <p className="text-gray-600 leading-relaxed">{review.text}</p>
+                    <p className="text-gray-600 leading-relaxed">
+                      {review.text}
+                    </p>
                   </div>
                 </div>
               ))}

@@ -4,7 +4,7 @@ import React from "react";
 
 const TopBanner = () => {
   return (
-    <div className="bg-black text-white py-2 px-4 relative max-w-[1440px] mx-auto   ">
+    <div className="bg-black text-white py-2 px-4 relative max-w-[1440px] mx-auto min-w-[410px]   ">
       <div className="container mx-auto flex items-center justify-center text-sm">
         <p>
           Sign up and get 20% off to your first order.{" "}

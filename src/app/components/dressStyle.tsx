@@ -25,7 +25,7 @@ const DressStyleCard = ({ title, className }: DressStyleCardProps) => {
 
 const DressStyle = () => {
   return (
-    <div className="px-4 xl:px-0 font-satoshi max-w-[1440px] mx-auto">
+    <div className="px-4 xl:px-0 font-satoshi max-w-[1440px] mx-auto min-w-[410px]">
       <section className="max-w-frame mx-auto bg-[#F0F0F0] px-6 pb-6 pt-10 md:p-[70px] rounded-[40px] text-center">
         <h2 className="text-[32px] leading-[36px] md:text-5xl mb-8 md:mb-14 capitalize font-Bold">
           Browse by Dress Style

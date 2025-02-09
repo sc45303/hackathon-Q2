@@ -4,7 +4,7 @@ import { MdOutlineEmail } from "react-icons/md";
 
 export function Newsletter() {
   return (
-    <section className="bg-black text-white flex flex-col md:flex-row items-center gap-4  md:ml-0 py-10 rounded-xl mb-8    ">
+    <section className="bg-black text-white flex flex-col md:flex-row items-center gap-4  md:ml-0 py-10 rounded-xl mb-8  min-w-[410px]  ">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 ">
           <h2 className="text-3xl md:text-4xl font-bold max-w-md font-Bold">

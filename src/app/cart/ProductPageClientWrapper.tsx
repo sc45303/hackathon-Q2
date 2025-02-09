@@ -173,8 +173,8 @@ const ProductPageClientWrapper: React.FC<ProductPageClientWrapperProps> = ({
   };
 
   return (
-    <div className="mt-0 md:mt-12">
-      <div className="flex h-full mt-0 items-center flex-col md:flex-row justify-center sm:justify-evenly sm:p-0 max-w-screen-2xl mx-auto line-clamp-3">
+    <div className="mt-0 md:mt-12 min-w-[410px] max-w-[1440px]">
+      <div className="flex h-full mt-0 items-center flex-col md:flex-row justify-center sm:justify-evenly sm:p-0 max-w-screen-2xl mx-auto line-clamp-3 ">
         {/* Left */}
         <div className="flex space-x-4 md:space-x-0 md:space-y-3 p-5 md:flex-col justify-between items-center md:w-[200px] order-2 md:order-1 ">
           {product.image &&

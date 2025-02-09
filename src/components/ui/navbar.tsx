@@ -129,7 +129,7 @@ const Navbar: React.FC = () => {
 
     <>
       <TopBanner />
-      <div className="navbar bg-base-100 shadow-md font-satoshi w-full max-w-[1440px] mx-auto sticky top-0 z-50 px-4 lg:px-8">
+      <div className="navbar bg-base-100 shadow-md font-satoshi w-full max-w-[1440px] mx-auto sticky top-0 z-50 px-4 lg:px-8 min-w-[410px]">
         <div className="flex items-center justify-between w-full">
           {/* Left Section: Hamburger Menu (Mobile) and Logo */}
           <div className="flex items-center space-x-2 lg:space-x-4">
@@ -193,7 +193,7 @@ const Navbar: React.FC = () => {
             {/* Logo */}
             <Link
               href="/"
-              className="btn btn-ghost text-2xl md:text-3xl font-Bold"
+              className="btn btn-ghost text-2xl md:text-3xl font-regular"
             >
               Shop.Co
             </Link>
