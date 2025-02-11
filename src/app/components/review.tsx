@@ -59,7 +59,7 @@ export function Reviews() {
   };
 
   return (
-    <section className="py-16 bg-gray-50 font-satoshi max-w-[1440px] mx-auto min-w-[410px]">
+    <section className="py-16 bg-gray-50 font-satoshi max-w-[1440px] mx-auto min-w-[430px]">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-Bold text-start mb-12">
           Our Happy Customers

@@ -19,6 +19,7 @@ slug: {
   _type: "slug",
   current: string;
 };
+colors?: string[];
 
 inventory : number;
 

@@ -28,7 +28,7 @@ const brandsData: { id: string; srcUrl: string }[] = [
 
 const BrandLogos = () => {
   return (
-    <div className="bg-black  max-w-[1440px] mx-auto min-w-[410px]  ">
+    <div className="bg-black  max-w-[1440px] mx-auto min-w-[430px]  ">
       <div className="max-w-frame mx-auto flex flex-wrap items-center justify-center md:justify-between py-5 md:py-0 sm:px-4 xl:px-0 space-x-6 ">
         {brandsData.map((brand) => (
           <Image

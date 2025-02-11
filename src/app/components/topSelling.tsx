@@ -83,7 +83,7 @@ export default function TopSelling() {
   }
 
   return (
-    <div className="w-full h-full  max-w-screen-xl mx-auto mt-20 min-w-[410px]">
+    <div className="w-full h-full  max-w-screen-xl mx-auto mt-20 min-w-[430px]">
       <h1 className="text-3xl md:text-4xl font-Bold text-center">
         New Arrivals
       </h1>

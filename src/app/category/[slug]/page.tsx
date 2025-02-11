@@ -1,164 +1,301 @@
-// import ColorSelector from "@/components/ColorSelector";
-// import ProductImageGallery from "@/app/components/slugComponent";
-// import ProductTitle from "@/components/ProductTitle";
-// import QuantitySelector from "@/components/QuantitySelector";
-// import SizeSelector from "@/components/SizeSlector";
-// import React from "react";
+// "use client";
+// import { Button } from "@/components/ui/button";
+// import { client } from "@/sanity/lib/client";
+// import { urlFor } from "@/sanity/lib/image";
+// import Image from "next/image";
+// import Link from "next/link";
+// import { FaStar } from "react-icons/fa";
+// import { useState, useEffect } from "react";
+// import { Product } from "types/products";
 
-// const App = ({ params }: { params: { slug: string } }) => {
-//   console.log("slug", params.slug);
+// // Star icons array
+// const star = [
+//   <FaStar key={1} />,
+//   <FaStar key={2} />,
+//   <FaStar key={3} />,
+//   <FaStar key={4} />,
+//   <FaStar key={5} />,
+// ];
+
+// export default function NewArrivals(params: { params: { slug: string } }) {
+//   const [product, setProducts] = useState<Product[]>([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState<string | null>(null);
+
+//   useEffect(() => {
+//     // Fetch products with error handling
+//     const fetchProducts = async () => {
+//       try {
+//         setLoading(true);
+//         setError(null);
+//         const fetchedProducts: Product[] = await client.fetch(
+//           `*[_type == 'product']{
+//             "image": image.asset->url,
+//             category,
+//             discountPercent,
+//             isNew,
+//             name,
+//             description,
+//             price,
+//             slug,
+//             rating,
+//             _id,
+
+//           }[1...20]`
+//         );
+//         setProducts(fetchedProducts);
+//         // eslint-disable-next-line @typescript-eslint/no-explicit-any
+//       } catch (err: any) {
+//         setError("Failed to load products. Please try again later.");
+//         console.error("Error fetching products:", err);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchProducts();
+//   }, []);
+
+//   if (loading) {
+//     return (
+//       <div className="flex justify-center items-center h-screen font-satoshi">
+//         <p>Loading products...</p>
+//       </div>
+//     );
+//   }
+
+//   if (error) {
+//     return (
+//       <div className="flex justify-center items-center h-screen">
+//         <p className="text-red-500 font-bold">{error}</p>
+//       </div>
+//     );
+//   }
+
 //   return (
-//     <div className="flex flex-col lg:flex-row items-center lg:items-start max-w-6xl mx-auto py-8 px-4">
-//       {/* Left Section: Product Images */}
-//       <div className="flex-shrink-0 w-full lg:w-1/2">
-//         <ProductImageGallery />
+//     <div className="w-full h-full  mt-20  max-w-[1440px] mx-auto min-w-[410px]">
+//       <h1 className="text-3xl md:text-4xl font-Bold ">{params.params.slug}</h1>
+//       <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5  gap-4 mt-12 min-w-[410px]">
+//         {product.map((product) => (
+//           <div key={product._id} className="flex-shrink-0">
+//             <Link href={`/product/${product.slug?.current}`}>
+//               <div className="w-[200px] md:w-[283px] h-[200px] md:h-[290px] bg-[#F0EEED] rounded-[20px]">
+//                 {product.image ? (
+//                   <Image
+//                     src={urlFor(product.image).url()}
+//                     alt={product.name}
+//                     className="w-full h-full rounded-[20px]"
+//                     width={100}
+//                     height={100}
+//                   />
+//                 ) : (
+//                   <div className="w-full h-full flex justify-center items-center bg-gray-300 rounded-[20px]">
+//                     <p>No Image</p>
+//                   </div>
+//                 )}
+//               </div>
+//             </Link>
+//             <div className="pl-2">
+//               <p className="text-lg mt-2 font-bold">{product.name}</p>
+//               <div className="flex text-yellow-400">
+//                 {star.map((icon, index) => (
+//                   <span key={index}>{icon}</span>
+//                 ))}
+//               </div>
+//               <p className="font-bold mt-1">
+//                 ${product.price.toFixed(2)}
+//                 {product.discountPercent ? (
+//                   <span className="text-gray-400 font-bold line-through ml-2">
+//                     {product.discountPercent}%
+//                   </span>
+//                 ) : null}
+//               </p>
+//             </div>
+//           </div>
+//         ))}
 //       </div>
-
-//       {/* Right Section: Product Details */}
-//       <div className="flex-grow w-full lg:w-1/2 lg:pl-8">
-//         <ProductTitle />
-//         <div className="divider"></div>
-//         <ColorSelector />
-//         <div className="divider"></div>
-//         <SizeSelector />
-//         <div className="divider"></div>
-//         <QuantitySelector />
-//         {/* <AddToCartButton /> */}
+//       <div className="flex justify-center items-start mt-10">
+//         <Link href="/NewArrivals">
+//           <Button
+//             variant={"outline"}
+//             className="sm:mt-0 sm:w-[200px]  w-full md:w-52 mb-5 md:mb-12  text-center hover:bg-black/80 transition-all text-black px-16 py-6 rounded-full  hover:bg-black hover:text-white hover:transition-transform  transform hover:scale-110 duration-300 ease-in-out"
+//           >
+//             View all
+//           </Button>
+//         </Link>
 //       </div>
+//       <hr className="border-gray-200 w-full mt-10 md:mt-0    " />
 //     </div>
 //   );
-// };
+// }
 
-// export default App;
-// // "use client";
-// // import { useAppSelector } from "@/app/store/hooks";
-// // import Image from "next/image";
-// // import React from "react";
+"use client";
+import { Button } from "@/components/ui/button";
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
+import Image from "next/image";
+import Link from "next/link";
+import { FaStar } from "react-icons/fa";
+import { useState, useEffect, use } from "react";
+import { Product } from "types/products";
+import ProductFilters from "@/app/pages/productFilters";
 
-// // const ProductDetail = ({ params }: { params: { category: string } }) => {
-// //   const product = useAppSelector((state) => state.products);
-// //   const bestSell = product.filter((val) => val.category === params.category);
-// //   return (
-// //     <div className="flex flex-col lg:flex-row gap-6 p-6 bg-white">
-// //       {/* Left - Product Images */}
-// //       <div className="w-full lg:w-1/2 flex flex-col gap-4">
-// //         {/* Main Image */}
-// //         <div className="w-full border rounded-md">
-// //           <Image
-// //             src="/iamges/pic9.png"
-// //             alt="Product"
-// //             className="w-full h-full object-cover"
-// //           />
-// //         </div>
+const star = [
+  <FaStar key={1} />,
+  <FaStar key={2} />,
+  <FaStar key={3} />,
+  <FaStar key={4} />,
+  <FaStar key={5} />,
+];
 
-// //         {/* Thumbnail Images */}
-// //         <div className="flex gap-3">
-// //           <Image
-// //             src="https://via.placeholder.com/100x100"
-// //             alt="Thumnail 1"
-// //             className="w-16 h-16 border rounded-md object-cover cursor-pointer hover:scale-105 transition"
-// //           />
-// //           <Image
-// //             src="https://via.placeholder.com/100x100"
-// //             alt="Thumbnail 2"
-// //             className="w-16 h-16 border rounded-md object-cover cursor-pointer hover:scale-105 transition"
-// //           />
-// //           <Image
-// //             src="https://via.placeholder.com/100x100"
-// //             alt="Thumbnail 3"
-// //             className="w-16 h-16 border rounded-md object-cover cursor-pointer hover:scale-105 transition"
-// //           />
-// //         </div>
-// //       </div>
+export default function NewArrivals({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = use(params);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [filters, setFilters] = useState({
+    minPrice: 0,
+    maxPrice: 1000,
+    colors: [] as string[],
+  });
 
-// //       {/* Right - Product Details */}
-// //       <div className="w-full lg:w-1/2">
-// //         {/* Product Title */}
-// //         <h1 className="text-2xl font-bold">ONE LIFE GRAPHIC T-SHIRT</h1>
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const fetchedProducts: Product[] = await client.fetch(
+          `*[_type == 'product' ]{
+            "image": image.asset->url,
+            category,
+            discountPercent,
+            isNew,
+            name,
+            description,
+            price,
+            slug,
+            rating,
+            _id,
+            colors,
+          }[1...20]`
+        );
+        setProducts(fetchedProducts);
+        setFilteredProducts(fetchedProducts);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (err: any) {
+        setError("Failed to load products. Please try again later.");
+        console.error("Error fetching products:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-// //         {/* Rating */}
-// //         <div className="flex items-center gap-2 mt-2">
-// //           <span className="text-yellow-500 text-xl">★</span>
-// //           <span className="text-lg font-semibold">4.5/5</span>
-// //         </div>
+    fetchProducts();
+  }, []);
 
-// //         {/* Price */}
-// //         <div className="flex items-center gap-3 mt-2">
-// //           <span className="text-2xl font-bold text-black">$260</span>
-// //           <span className="text-lg text-gray-400 line-through">$300</span>
-// //           <span className="text-lg text-red-600">-40% Off</span>
-// //         </div>
+  const applyFilters = () => {
+    let filtered = products.filter(
+      (product) =>
+        product.price >= filters.minPrice && product.price <= filters.maxPrice
+    );
 
-// //         {/* Description */}
-// //         <p className="text-gray-600 mt-4">
-// //           This graphic t-shirt is perfect for any occasion. Crafted from a soft
-// //           and breathable fabric, it offers superior comfort and style.
-// //         </p>
+    if (filters.colors.length > 0) {
+      filtered = filtered.filter((product) =>
+        product.colors?.some((c) => filters.colors.includes(c))
+      );
+    }
 
-// //         {/* Colors */}
-// //         <div className="mt-6">
-// //           <h4 className="font-semibold text-lg mb-2">Select Colors</h4>
-// //           <div className="flex gap-3">
-// //             <div
-// //               className="w-8 h-8 rounded-full border-2 border-black"
-// //               style={{ backgroundColor: "#6B4226" }}
-// //             ></div>
-// //             <div
-// //               className="w-8 h-8 rounded-full border"
-// //               style={{ backgroundColor: "#223A2E" }}
-// //             ></div>
-// //             <div
-// //               className="w-8 h-8 rounded-full border"
-// //               style={{ backgroundColor: "#3E4451" }}
-// //             ></div>
-// //           </div>
-// //         </div>
+    setFilteredProducts(filtered);
+  };
 
-// //         {/* Sizes */}
-// //         <div className="mt-6">
-// //           <h4 className="font-semibold text-lg mb-2">Choose Size</h4>
-// //           <div className="flex gap-3">
-// //             <button className="px-4 py-2 border rounded-md bg-white hover:bg-gray-100">
-// //               Small
-// //             </button>
-// //             <button className="px-4 py-2 border rounded-md bg-white hover:bg-gray-100">
-// //               Medium
-// //             </button>
-// //             <button className="px-4 py-2 border rounded-md bg-black text-white">
-// //               Large
-// //             </button>
-// //             <button className="px-4 py-2 border rounded-md bg-white hover:bg-gray-100">
-// //               X-Large
-// //             </button>
-// //           </div>
-// //         </div>
+  useEffect(() => {
+    applyFilters();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters, products]);
 
-// //         {/* Quantity */}
-// //         <div className="mt-6 flex items-center gap-3">
-// //           <button className="px-3 py-1 border rounded-md hover:bg-gray-100">
-// //             -
-// //           </button>
-// //           <span className="text-lg font-semibold">1</span>
-// //           <button className="px-3 py-1 border rounded-md hover:bg-gray-100">
-// //             +
-// //           </button>
-// //         </div>
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen font-satoshi">
+        <p>Loading products...</p>
+      </div>
+    );
+  }
 
-// //         {/* Add to Cart Button */}
-// //         <button className="mt-6 px-6 py-3 bg-black text-white rounded-md w-full hover:bg-gray-800">
-// //           Add to Cart
-// //         </button>
-// //       </div>
-// //     </div>
-// //   );
-// // };
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p className="text-red-500 font-bold">{error}</p>
+      </div>
+    );
+  }
 
-// // export default ProductDetail;
+  return (
+    <div className="w-full min-w-[410px] h-full mt-20 max-w-[1440px] mx-auto  px-4">
+      <div className="flex flex-col md:flex-row gap-8 min-w-[300px]">
+        {/* फिल्टर साइडबार */}
+        <ProductFilters onFilterChange={setFilters} />
 
-import React from "react";
+        {/* प्रोडक्ट ग्रिड */}
+        <div className="flex-1">
+          <h1 className="text-3xl md:text-4xl font-Bold">{slug} </h1>
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mt-12 min-w-[410px]">
+            {filteredProducts.map((product) => (
+              <div key={product._id} className="flex-shrink-0">
+                <Link href={`/product/${product.slug?.current}`}>
+                  <div className="w-[200px] md:w-[283px] h-[200px] md:h-[290px] bg-[#F0EEED] rounded-[20px]">
+                    {product.image ? (
+                      <Image
+                        src={urlFor(product.image).url()}
+                        alt={product.name}
+                        className="w-full h-full rounded-[20px]"
+                        width={283}
+                        height={290}
+                      />
+                    ) : (
+                      <div className="w-full h-full flex justify-center items-center bg-gray-300 rounded-[20px]">
+                        <p>No Image</p>
+                      </div>
+                    )}
+                  </div>
+                </Link>
+                <div className="pl-2">
+                  <p className="text-lg mt-2 font-bold">{product.name}</p>
+                  <div className="flex text-yellow-400">
+                    {star.map((icon, index) => (
+                      <span key={index}>{icon}</span>
+                    ))}
+                  </div>
+                  <p className="font-bold mt-1">
+                    ${product.price.toFixed(2)}
+                    {product.discountPercent ? (
+                      <span className="text-gray-400 font-bold line-through ml-2">
+                        {product.discountPercent}%
+                      </span>
+                    ) : null}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
 
-const page = () => {
-  return <div>hdashdaklhdlashh</div>;
-};
-
-export default page;
+          <div className="flex justify-center items-start mt-10">
+            <Link href="/NewArrivals">
+              <Button
+                variant={"outline"}
+                className="sm:mt-0 sm:w-[200px] w-full md:w-52 mb-5 md:mb-12 text-center hover:bg-black/80 transition-all text-black px-16 py-6 rounded-full hover:bg-black hover:text-white hover:transition-transform transform hover:scale-110 duration-300 ease-in-out"
+              >
+                View all
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+      <hr className="border-gray-200 w-full mt-10 md:mt-0" />
+    </div>
+  );
+}

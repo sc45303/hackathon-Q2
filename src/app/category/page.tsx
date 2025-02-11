@@ -96,10 +96,17 @@
 // };
 
 // export default Category;
+// import React from "react";
+
+// const page = () => {
+//   return <div>hom</div>;
+// };
+
+// export default page;
 import React from "react";
 
 const page = () => {
-  return <div>hom</div>;
+  return <div>{/* home */}</div>;
 };
 
 export default page;

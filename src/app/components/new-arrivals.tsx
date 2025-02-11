@@ -83,7 +83,7 @@ export default function NewArrivals() {
   }
 
   return (
-    <div className="w-full h-full  mt-20   max-w-[1440px] mx-auto min-w-[410px]">
+    <div className="w-full h-full  mt-20   max-w-[1440px] mx-auto min-w-[430px]">
       <h1 className="text-3xl md:text-4xl font-Bold text-center">
         New Arrivals
       </h1>
